@@ -1,4 +1,5 @@
 import 'package:expense_tracker2/widgets/expenses.dart';
+//import 'package:expense_tracker2/widgets/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
@@ -59,7 +60,7 @@ void main() {
             ),
       ),
       // themeMode: ThemeMode.system, // default
-      home: const Expenses(),
+      home: const Expenses(), // SplashScreen(), //
     ),
   );
 }
