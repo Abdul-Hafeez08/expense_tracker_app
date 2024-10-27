@@ -100,7 +100,7 @@ class _NewExpenseState extends State<NewExpense> {
                       controller: _amountController,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        prefixText: 'Rs: ',
+                        prefixText: '',
                         label: Text('Amount'),
                       ),
                     ),

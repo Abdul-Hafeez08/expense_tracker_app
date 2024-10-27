@@ -1,4 +1,4 @@
-import 'package:expense_tracker2/widgets/expenses.dart';
+import 'package:expense_tracker2/widgets/splash_screen.dart';
 //import 'package:expense_tracker2/widgets/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +15,11 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      // Dark theme refactor
       darkTheme: ThemeData.dark().copyWith(
-        useMaterial3: true,
         colorScheme: kDarkColorScheme,
-        cardTheme: const CardTheme().copyWith(
+        cardTheme: CardTheme(
           color: kDarkColorScheme.secondaryContainer,
           margin: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -32,14 +33,17 @@ void main() {
           ),
         ),
       ),
-      theme: ThemeData().copyWith(
-        useMaterial3: true,
+
+      // Light theme refactor
+      theme: ThemeData.from(
         colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
+        useMaterial3: true,
+      ).copyWith(
+        appBarTheme: AppBarTheme(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
         ),
-        cardTheme: const CardTheme().copyWith(
+        cardTheme: CardTheme(
           color: kColorScheme.secondaryContainer,
           margin: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -51,7 +55,7 @@ void main() {
             backgroundColor: kColorScheme.primaryContainer,
           ),
         ),
-        textTheme: ThemeData().textTheme.copyWith(
+        textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: kColorScheme.onSecondaryContainer,
@@ -59,8 +63,9 @@ void main() {
               ),
             ),
       ),
+
       // themeMode: ThemeMode.system, // default
-      home: const Expenses(), // SplashScreen(), //
+      home: const SplashScreen(), // Expenses(),
     ),
   );
 }

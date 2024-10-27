@@ -13,9 +13,11 @@ class Chart extends StatelessWidget {
       ExpenseBucket.forCategory(expenses, Category.food),
       ExpenseBucket.forCategory(expenses, Category.education),
       ExpenseBucket.forCategory(expenses, Category.travel),
-      ExpenseBucket.forCategory(expenses, Category.shooping),
+      ExpenseBucket.forCategory(expenses, Category.shopping),
       ExpenseBucket.forCategory(expenses, Category.health),
       ExpenseBucket.forCategory(expenses, Category.home),
+      ExpenseBucket.forCategory(expenses, Category.Bills_Utilities),
+      ExpenseBucket.forCategory(expenses, Category.other),
     ];
   }
 
@@ -71,7 +73,7 @@ class Chart extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Row(
-            children: buckets // for ... in
+            children: buckets
                 .map(
                   (bucket) => Expanded(
                     child: Padding(

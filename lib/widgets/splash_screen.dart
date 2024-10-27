@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          color: Colors.blue,
+          color: Colors.white,
           child: const Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
               Text(
                 "A H T",
                 style: TextStyle(
-                    fontSize: 40, fontFamily: 'myfonts2', color: Colors.white),
+                  fontSize: 40,
+                  fontFamily: 'myfonts2',
+                  color: Color.fromARGB(255, 165, 125, 2),
+                ),
               ),
               LinearProgressIndicator(),
             ],

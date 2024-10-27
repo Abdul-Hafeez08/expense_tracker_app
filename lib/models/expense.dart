@@ -10,18 +10,23 @@ enum Category {
   food,
   travel,
   education,
-  shooping,
+  shopping,
   health,
   home,
+  // ignore: constant_identifier_names
+  Bills_Utilities,
+  other,
 }
 
 const categoryIcons = {
   Category.food: FontAwesomeIcons.utensils,
   Category.travel: FontAwesomeIcons.car,
   Category.education: FontAwesomeIcons.book,
-  Category.shooping: FontAwesomeIcons.bagShopping,
+  Category.shopping: FontAwesomeIcons.bagShopping,
   Category.health: FontAwesomeIcons.hospital,
   Category.home: FontAwesomeIcons.house,
+  Category.Bills_Utilities: FontAwesomeIcons.moneyBillWave,
+  Category.other: FontAwesomeIcons.list
 };
 
 class Expense {

@@ -16,11 +16,62 @@ class Expenses extends StatefulWidget {
 
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [];
-
+  String? _selectedCurrency;
   @override
   void initState() {
     super.initState();
     _loadExpensesFromLocalStorage();
+    //for Currency
+    _loadCurrency();
+  }
+
+//load from saved currency
+  Future<void> _loadCurrency() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedCurrency = prefs.getString('currency');
+    });
+    if (_selectedCurrency == null) {
+      _showCurrencyDialog();
+    }
+  }
+
+  //save in local storage
+  Future<void> _saveCurrency(String currency) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('currency', currency);
+    setState(() {
+      _selectedCurrency = currency;
+    });
+  }
+
+  // Show dialog to select currency
+  void _showCurrencyDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Currency'),
+          content: DropdownButton<String>(
+            value: _selectedCurrency,
+            onChanged: (String? newValue) {
+              if (newValue != null) {
+                _saveCurrency(newValue);
+                Navigator.of(context).pop();
+              }
+            },
+            items: <String>['USD', 'EUR', 'PKR', 'INR']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+        );
+      },
+    );
   }
 
   double calculateTotalExpenses() {
@@ -143,7 +194,7 @@ class _ExpensesState extends State<Expenses> {
               children: [
                 Chart(expenses: _registeredExpenses),
                 Text(
-                  "Total Expense = Rs: ${calculateTotalExpenses().toStringAsFixed(2)}",
+                  "Total Expense = $_selectedCurrency ${calculateTotalExpenses().toStringAsFixed(2)}",
                   style: const TextStyle(
                       color: Color.fromARGB(255, 165, 125, 2),
                       fontWeight: FontWeight.bold),
